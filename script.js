@@ -40,6 +40,7 @@ function add(e) {
     addTitle.value = "New Notes";
     mySelector = "";
     showNotes();
+    showTime()
 }
 
 
@@ -67,10 +68,13 @@ function showNotes() {
     notesObj.forEach(function (element, index) {
         let y = index + 90;
         let x = 'color' + y;
+        let t1 = 'time'+index;
         html +=
             `<div class=" gradient-border newCard card mx-2 my-2 ${x}" id="${index+90}" style="width: 18rem;">
         <div class="card-body">
+        <h7 id="${t1}">11:23</h7>
             <h5 class="card-title" >${notesTitleObj[index]}</h5>
+            
             
             <p class="card-text" id="${index+10}">${element} </p>
             
@@ -79,11 +83,12 @@ function showNotes() {
         </div>
     </div>`
 
-        console.log(x);
-        console.log(typeof (x));
-        let changerr = document.getElementsByClassName(x);
-        console.log(changerr);
-        changerr.innerHTML = `<p>bold</p>`;
+
+
+    
+        // let changerr = document.getElementsByClassName(x);
+        // console.log(changerr);
+        // changerr.innerHTML = `<p>bold</p>`;
         // switch (colorObj[index]) {
         //     case 0:
         //         change.style.backgroundColor = rgb(235, 22, 206);
@@ -100,7 +105,8 @@ function showNotes() {
 
 
         // }
-
+        
+    // timechange.innerText = "12:34";
        
     });
     
@@ -116,9 +122,28 @@ function showNotes() {
         notesEle.innerHTML = `<b class="nthng">Nothing to Show! Notes Empty --> Go to Add Notes section to add Notes </b>`
     }
 
+
+    
     
 }
 
+// Show time
+
+function showTime() {
+    notesObj.forEach(function (element, index) {
+        let t1 = 'time'+index;
+        let timechange = document.getElementById(t1);
+        timechange.style.color = "blue";
+        timechange.style.opacity = 0.2;
+
+        let newdate = new Date();
+        console.log(newdate);
+        let x = newdate.getDate();
+        timechange.innerText = x+"/"+newdate.getMonth()+'/'+newdate.getFullYear();
+        console.log(timechange.innerText);
+        console.log("dgdffddf");
+    });
+}
 
 // Delete Notes FUcntion
 
@@ -153,6 +178,7 @@ function deleteNotes(index) {
     localStorage.setItem("color",JSON.stringify(colorObj))
     localStorage.setItem("notesTitle",JSON.stringify(notesTitleObj))
     showNotes();
+    showTime();
 }
 
 let searchBtn = document.getElementById('searchTxt');
@@ -187,6 +213,7 @@ function editNotes(yess, pa) {
     index2.innerHTML = htmll;
     // console.log(index2);
     // showNotes();
+    showTime()
 }
 
 function saveData(pa, yess) {
@@ -212,9 +239,13 @@ function saveData(pa, yess) {
         <button id="${pa-10}op" onclick="editNotes(${pa-10+90}, ${pa-10+10})" class=" btn btn-primary editBtn">Edit</button>
     </div>
     `;
+    
     let index33 = document.getElementById(yess);
     index33.innerHTML = neww;
+    showTime()
 
 
 }
+showTime();
+
 
