@@ -142,6 +142,39 @@ function showTime() {
         timechange.innerText = x+"/"+newdate.getMonth()+'/'+newdate.getFullYear();
         console.log(timechange.innerText);
         console.log("dgdffddf");
+
+
+        let y = index + 90;
+        // document.getElementById(y).style.backgroundColor = "red";
+
+
+        let color = localStorage.getItem("color");
+        if (color == null) {
+            colorObj = [];
+        } else {
+            colorObj = JSON.parse(color);
+        }
+
+            switch (colorObj[index]) {
+                case "1":
+                    document.getElementById(y).style.backgroundColor = "pink";
+                    break;
+                case "2":
+                    document.getElementById(y).style.backgroundColor = "red";
+                    break;
+                case "3":
+                    document.getElementById(y).style.backgroundColor = "green";
+                    break;
+                case "4":
+                    document.getElementById(y).style.backgroundColor = "yellowgreen";
+                    break;
+                
+                default:
+                    break;
+            }
+        
+        
+
     });
 }
 
